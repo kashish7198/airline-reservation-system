@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <h1 id="welcomeMessage">My Bookings</h1>
+    <nav>
+    <a href="index.html">Home</a> |
+    <a href="bookings.html">My Bookings</a> |
+    <button onclick="logout()">Logout</button>
+</nav>
+
+    <div id="bookingList">
+        <!-- Bookings will appear here -->
+    </div>
+
+    <br>
+
+    <a href="index.html">Back to Home</a>
+    <script>
+    function logout() {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+
+        alert("Logged out successfully.");
+
+        window.location.href = "login.html";
+    }
+</script>
+<script>
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (user) {
+        document.getElementById("welcomeMessage").textContent =
+            `${user.name}'s Bookings`;
+    }
+</script>
+<script src="js/bookings.js"></script>
+</body>
+</html>
